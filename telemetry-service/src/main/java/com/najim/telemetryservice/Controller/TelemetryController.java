@@ -1,5 +1,6 @@
 package com.najim.telemetryservice.Controller;
 
+import com.najim.telemetryservice.Model.TelemetryReading;
 import com.najim.telemetryservice.service.TelemetryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ public class TelemetryController {
    private final TelemetryService service;
 
    @GetMapping("/telemetry")
-    public String getTemperature() {
-       return TelemetryService.TelemetryReading().toString();
+    public TelemetryReading getTemperature() {
+       return service.getTelemetryJson();
    }
 
 

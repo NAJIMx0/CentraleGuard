@@ -9,23 +9,20 @@ import java.util.Map;
 
 @Service
 public class TelemetryService {
-    double temperature = 70.00;
-    double vibration=2.0;
-    int rotationSpeed=3000;
-    double pressure=5.0;
-    String machineId= "turbine-1";
-    Instant timestamp = Instant.now();
-
-
-
-
-    Random random = new Random();
 
 //    int number = random.nextInt(100); // 0 to 99
 //    double value = random.nextDouble();
 
     public TelemetryReading getTelemetryJson() {
-        for (int i = 0; i < 20; i++) {
+        double temperature = 70.00;
+        double vibration = 2.0;
+        int rotationSpeed = 3000;
+        double pressure = 5.0;
+        String machineId = "turbine-1";
+        Instant timestamp = Instant.now();
+        Random random = new Random();
+
+
             // Temperature: ±2 °C
             int valueT = random.nextInt(5) - 2;
             temperature += valueT;
@@ -42,17 +39,14 @@ public class TelemetryService {
             double valueP = (random.nextInt(21) - 10) / 100.0;
             pressure += valueP;
 
+            int num = random.nextInt(20);
+            if (num % 20 == 0) {
+                    temperature += random.nextInt(41) + 60;
+                    vibration += (random.nextInt(201) + 100) / 100.0;
+                    rotationSpeed += random.nextInt(1001) + 500;
+                    pressure += (random.nextInt(201) + 100) / 100.0;
 
-            double x = random.nextInt(101) / 100.0;
-            if(x >0.05) {
-                temperature += random.nextInt(41) + 60;              // +60 to +100 °C
-                vibration += (random.nextInt(201) + 100) / 100.0;    // +1.00 to +3.00 mm/s
-                rotationSpeed += random.nextInt(1001) + 500;         // +500 to +1500 RPM
-                pressure += (random.nextInt(201) + 100) / 100.0;     // +1.00 to +3.00 bar
-
-                return new TelemetryReading(machineId,temperature,vibration,rotationSpeed,pressure,timestamp);
             }
-        }
         return new TelemetryReading(machineId,temperature,vibration,rotationSpeed,pressure,timestamp);
     }
 }
