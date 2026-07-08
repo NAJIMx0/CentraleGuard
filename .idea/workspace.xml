@@ -84,6 +84,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.TelemetryServiceApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -132,7 +133,7 @@
       <option name="presentableId" value="Default" />
       <updated>1783495037656</updated>
       <workItem from="1783495039027" duration="5496000" />
-      <workItem from="1783505168003" duration="5436000" />
+      <workItem from="1783505168003" duration="7747000" />
     </task>
     <servers />
   </component>
