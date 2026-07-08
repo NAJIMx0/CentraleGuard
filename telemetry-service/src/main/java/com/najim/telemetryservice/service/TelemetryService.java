@@ -1,6 +1,9 @@
 package com.najim.telemetryservice.service;
 
+import com.najim.telemetryservice.Model.TelemetryReading;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
 import java.util.Random;
 import java.util.Map;
 
@@ -11,15 +14,17 @@ public class TelemetryService {
     int rotationSpeed=3000;
     double pressure=5.0;
     String machineId= "turbine-1";
+    Instant timestamp = Instant.now();
+
 
 
 
     Random random = new Random();
 
 //    int number = random.nextInt(100); // 0 to 99
-    double value = random.nextDouble();
+//    double value = random.nextDouble();
 
-    public double getTelemetryJson() {
+    public TelemetryReading getTelemetryJson() {
         for (int i = 0; i < 20; i++) {
             // Temperature: ±2 °C
             int valueT = random.nextInt(5) - 2;
@@ -37,14 +42,17 @@ public class TelemetryService {
             double valueP = (random.nextInt(21) - 10) / 100.0;
             pressure += valueP;
 
+
             double x = random.nextInt(101) / 100.0;
             if(x >0.05) {
                 temperature += random.nextInt(41) + 60;              // +60 to +100 °C
                 vibration += (random.nextInt(201) + 100) / 100.0;    // +1.00 to +3.00 mm/s
                 rotationSpeed += random.nextInt(1001) + 500;         // +500 to +1500 RPM
                 pressure += (random.nextInt(201) + 100) / 100.0;     // +1.00 to +3.00 bar
+
+                return new TelemetryReading(machineId,temperature,vibration,rotationSpeed,pressure,timestamp);
             }
         }
-
+        return new TelemetryReading(machineId,temperature,vibration,rotationSpeed,pressure,timestamp);
     }
 }
