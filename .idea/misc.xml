@@ -6,6 +6,8 @@
       <list>
         <option value="$PROJECT_DIR$/plc-command-service/pom.xml" />
         <option value="$PROJECT_DIR$/telemetry-service/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/discovery-service/pom.xml" />
       </list>
     </option>
   </component>

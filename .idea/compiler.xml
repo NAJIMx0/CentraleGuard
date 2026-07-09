@@ -7,6 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="discovery" />
+      </profile>
+      <profile name="Annotation profile for plc-command-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
         <module name="telemetry-service" />
         <module name="plc-command-service" />
       </profile>
@@ -14,6 +24,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-parameters" />
+      <module name="discovery" options="-parameters" />
       <module name="plc-command-service" options="-parameters" />
       <module name="telemetry-service" options="-parameters" />
     </option>
