@@ -18,7 +18,7 @@ public class TelemetryService {
         double vibration = 2.0;
         int rotationSpeed = 3000;
         double pressure = 5.0;
-        String machineId = "turbine-1";
+        String machineId = "compressor-1";
         Instant timestamp = Instant.now();
         Random random = new Random();
 

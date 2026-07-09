@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2d91d0a-094a-43de-8a0a-58954de180be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/configurations/plc-command-service.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/configurations/telemetry-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/configurations/auth-service.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/configurations/discovery-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/configurations/discovery-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/configurations/generate-service.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/configurations/webhook-service.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plc-command-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plc-command-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plc-command-service/src/main/java/com/najim/plccommandservice/PlcCommandServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/plc-command-service/src/main/java/com/najim/plccommandservice/PlcCommandServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plc-command-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/plc-command-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telemetry-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/telemetry-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telemetry-service/src/main/java/com/najim/telemetryservice/TelemetryServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/telemetry-service/src/main/java/com/najim/telemetryservice/TelemetryServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telemetry-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/telemetry-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/telemetry-service/src/main/java/com/najim/telemetryservice/service/TelemetryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/telemetry-service/src/main/java/com/najim/telemetryservice/service/TelemetryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +187,7 @@
       <workItem from="1783495039027" duration="5496000" />
       <workItem from="1783505168003" duration="7747000" />
       <workItem from="1783525325304" duration="1902000" />
-      <workItem from="1783580818259" duration="1002000" />
+      <workItem from="1783580818259" duration="2177000" />
     </task>
     <servers />
   </component>
