@@ -1,0 +1,48 @@
+server:
+  port: 8997
+
+eureka:
+  instance:
+    hostname: api-gateway
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: telemetry-service
+              uri: http://localhost:8999
+              predicates:
+                - Path=/api/sensors/telemetry
+
+#            - id: plc-command-service
+#              uri: http://localhost:8998
+#              predicates:
+#                - Path=/api/plc/command
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      plcCommand:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 5
+        minimum-number-of-calls: 5
