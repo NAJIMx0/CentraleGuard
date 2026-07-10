@@ -1,6 +1,8 @@
 package com.najim.telemetryservice.service;
 
 import com.najim.telemetryservice.Model.TelemetryReading;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -9,6 +11,8 @@ import java.util.Map;
 
 @Service
 public class TelemetryService {
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
 //    int number = random.nextInt(100); // 0 to 99
 //    double value = random.nextDouble();
@@ -41,12 +45,17 @@ public class TelemetryService {
 
             int num = random.nextInt(20);
             if (num % 20 == 0) {
-                    temperature += random.nextInt(41) + 60;
+                    temperature += random.nextInt(221) + 200;
                     vibration += (random.nextInt(201) + 100) / 100.0;
                     rotationSpeed += random.nextInt(1001) + 500;
                     pressure += (random.nextInt(201) + 100) / 100.0;
 
             }
-        return new TelemetryReading(machineId,temperature,vibration,rotationSpeed,pressure,timestamp);
+
+
+//        return new TelemetryReading(machineId,temperature,vibration,rotationSpeed,pressure,timestamp);
+        TelemetryReading reading = new TelemetryReading(machineId, temperature, vibration, rotationSpeed, pressure, timestamp);
+        kafkaTemplate.send("sensor-readings", machineId, reading);
+        return reading;
     }
 }
