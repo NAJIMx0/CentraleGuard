@@ -1,4 +1,4 @@
-package com.najim.apigateway.filter;
+package com.najim.apigateway.service;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
