@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2d91d0a-094a-43de-8a0a-58954de180be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api-gateway/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plc-command-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plc-command-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/telemetry-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/telemetry-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,6 +206,13 @@
       <workItem from="1783525325304" duration="1902000" />
       <workItem from="1783580818259" duration="22758000" />
       <workItem from="1784013922558" duration="13627000" />
+      <workItem from="1784461342797" duration="1168000" />
+      <workItem from="1784464325311" duration="4000" />
+      <workItem from="1784464381998" duration="1302000" />
+      <workItem from="1784484265130" duration="612000" />
+      <workItem from="1784531279362" duration="8655000" />
+      <workItem from="1784559868297" duration="1215000" />
+      <workItem from="1784562151522" duration="48000" />
     </task>
     <servers />
   </component>

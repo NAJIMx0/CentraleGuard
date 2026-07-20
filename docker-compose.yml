@@ -1,0 +1,131 @@
+services:
+  config-server:
+    container_name: config-server
+    build:
+      context: ./config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - centraleguard-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8888/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  discovery-service:
+    container_name: discovery-service
+    build:
+      context: ./discovery-service
+    ports:
+      - "8761:8761"
+    networks:
+      - centraleguard-net
+    depends_on:
+      config-server:
+        condition: service_healthy
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway
+    ports:
+      - "8997:8997"
+    networks:
+      - centraleguard-net
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka
+    restart: unless-stopped
+
+  plc-command-service:
+    container_name: plc-command-service
+    build:
+      context: ./plc-command-service
+    ports:
+      - "8998:8998"
+    networks:
+      - centraleguard-net
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka
+    restart: unless-stopped
+
+  telemetry-service:
+    container_name: telemetry-service
+    build:
+      context: ./telemetry-service
+    ports:
+      - "8999:8999"
+    networks:
+      - centraleguard-net
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    restart: unless-stopped
+
+  kafka:
+    image: apache/kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - centraleguard-net
+    healthcheck:
+      test: ["CMD", "sh", "-c", "kafka-topics.sh --bootstrap-server localhost:9092 --list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: timescaledb
+    ports:
+      - "5432:5432"
+    networks:
+      - centraleguard-net
+    environment:
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ai-service:
+    container_name: ai-service
+    build:
+      context: ./ai-service
+    networks:
+      - centraleguard-net
+    depends_on:
+      kafka:
+        condition: service_healthy
+      timescaledb:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  centraleguard-net:
+    driver: bridge
