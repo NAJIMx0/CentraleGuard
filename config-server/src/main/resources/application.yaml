@@ -6,6 +6,16 @@ spring:
   cloud:
     config:
       server:
+        vault:
+          host: localhost
+          port: 8200
+          scheme: http
+          backend: secret
+          default-key: application
+          profile-separator: "-"
+          kv-version: 2
+          authentication: TOKEN
+          token: hvs.xxxxxxxxxxxxxxxxx
         native:
           search-locations: classpath:/configurations
 server:
