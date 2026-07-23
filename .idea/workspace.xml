@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2d91d0a-094a-43de-8a0a-58954de180be" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/prometheus/prometheus.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +212,7 @@
       <workItem from="1784724179391" duration="898000" />
       <workItem from="1784735831467" duration="1437000" />
       <workItem from="1784791472153" duration="419000" />
-      <workItem from="1784791976071" duration="2359000" />
+      <workItem from="1784791976071" duration="5790000" />
     </task>
     <servers />
   </component>
