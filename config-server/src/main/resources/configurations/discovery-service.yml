@@ -9,3 +9,8 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://discovery-service:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
