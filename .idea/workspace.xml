@@ -7,7 +7,6 @@
     <list default="true" id="a2d91d0a-094a-43de-8a0a-58954de180be" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/configurations/api-gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/configurations/api-gateway.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +224,7 @@
       <workItem from="1785171482930" duration="962000" />
       <workItem from="1785174952522" duration="707000" />
       <workItem from="1785175872715" duration="1339000" />
-      <workItem from="1785243233607" duration="9983000" />
+      <workItem from="1785243233607" duration="11391000" />
     </task>
     <servers />
   </component>
