@@ -120,6 +120,8 @@ services:
       - "5432:5432"
     networks:
       - centraleguard-net
+    volumes:
+      - timescaledb-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgres
     healthcheck:
@@ -213,6 +215,7 @@ networks:
     driver: bridge
 
 volumes:
+  timescaledb-data:
   kafka-data:
   prometheus-data:
   grafana-data:
