@@ -24,7 +24,12 @@ pipeline {
 
         stage('Wait for SonarQube') {
             steps {
-                sh 'sleep 60'
+                sh '''
+                    until curl -s http://sonarqube:9000/api/system/status | grep -q "\\"status\\":\\"UP\\""; do
+                        echo "Waiting for SonarQube to be ready..."
+                        sleep 5
+                    done
+                '''
             }
         }
 
