@@ -13,7 +13,7 @@ public class PlcProxyController {
     @PostMapping("/command")
     @CircuitBreaker(name = "plcCommand", fallbackMethod = "fallback")
     public String sendCommand(@RequestBody Object command) {
-        return restTemplate.postForObject("http://localhost:8998/api/plc/command", command, String.class);
+        return restTemplate.postForObject("http://plc-command-service:8998/api/plc/command", command, String.class);
     }
 
     public String fallback(Object command, Throwable t) {
