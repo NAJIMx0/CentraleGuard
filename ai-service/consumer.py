@@ -19,7 +19,7 @@ consumer = KafkaConsumer(
 # Connect to TimescaleDB
 conn = psycopg2.connect(
     host="timescaledb",
-    port=5433,
+    port=5432,
     dbname="postgres",
     user="postgres",
     password="postgres"
