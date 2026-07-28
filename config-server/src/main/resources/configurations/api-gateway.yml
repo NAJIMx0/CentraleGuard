@@ -28,3 +28,10 @@ spring:
 #              uri: http://plc-command-service:8998
 #              predicates:
 #                - Path=/api/plc/command
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
