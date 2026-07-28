@@ -9,43 +9,22 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://discovery-service:8761/eureka
 
 spring:
+  config:
+    import: optional:http://config-server:8888
   cloud:
     gateway:
       server:
         webmvc:
           routes:
             - id: telemetry-service
-              uri: http://localhost:8999
+              uri: http://telemetry-service:8999
               predicates:
                 - Path=/api/sensors/telemetry
 
 #            - id: plc-command-service
-#              uri: http://localhost:8998
+#              uri: http://plc-command-service:8998
 #              predicates:
 #                - Path=/api/plc/command
-
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-        
-
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
-
-resilience4j:
-  circuitbreaker:
-    instances:
-      plcCommand:
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 10s
-        sliding-window-size: 5
-        minimum-number-of-calls: 5
-
-
