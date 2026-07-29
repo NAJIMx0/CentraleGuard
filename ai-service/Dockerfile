@@ -4,4 +4,4 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY consumer.py .
 COPY anomaly_model.pkl .
-ENTRYPOINT ["python", "consumer.py"]
+ENTRYPOINT ["python", "-u", "consumer.py"]
