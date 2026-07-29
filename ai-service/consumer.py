@@ -11,7 +11,7 @@ model = joblib.load("anomaly_model.pkl")
 # Connect to Kafka
 consumer = KafkaConsumer(
     'sensor-readings',
-    bootstrap_servers='kafka:9092',
+    bootstrap_servers='kafka:29092',
     value_deserializer=lambda m: json.loads(m.decode('utf-8')),
     auto_offset_reset='earliest'
 )
