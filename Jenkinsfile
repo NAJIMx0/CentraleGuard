@@ -18,7 +18,10 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
-                sh 'docker-compose up --build -d'
+                sh '''
+                    docker rm -f $(docker ps -aq) || true
+                    docker-compose up --build -d
+                '''
             }
         }
 
