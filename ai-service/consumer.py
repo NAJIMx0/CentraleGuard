@@ -6,9 +6,11 @@ import psycopg2
 from datetime import datetime
 
 # Load the trained model once at startup
+print("Step 1: loading model")
 model = joblib.load("anomaly_model.pkl")
 
 # Connect to Kafka
+print("Step 2: connecting kafka")
 consumer = KafkaConsumer(
     'sensor-readings',
     bootstrap_servers='kafka:29092',
@@ -17,6 +19,7 @@ consumer = KafkaConsumer(
 )
 
 # Connect to TimescaleDB
+print("Step 3: connecting timescaledb")
 conn = psycopg2.connect(
     host="timescaledb",
     port=5432,
