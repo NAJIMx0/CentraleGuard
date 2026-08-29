@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy with Docker Compose') {
             steps {
                 sh '''
-                    docker-compose down --remove-orphans -v || true
+                    docker-compose down --remove-orphans || true
                     docker-compose up --build -d
                 '''
             }
