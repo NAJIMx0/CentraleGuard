@@ -8,7 +8,9 @@ pipeline {
     }
     stages {
         stage('Checkout') {
-            git branch: 'main', url: 'https://github.com/NAJIMx0/CentraleGuard.git'
+            steps {
+                git branch: 'main', url: 'https://github.com/NAJIMx0/CentraleGuard.git'
+            }
         }
 
         stage('Test') {
