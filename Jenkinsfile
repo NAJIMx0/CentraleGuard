@@ -1,27 +1,33 @@
 pipeline {
     agent any
-
     tools {
         maven 'Maven3'
     }
-
     environment {
         SONAR_TOKEN = credentials('sonar-token')
     }
-
     stages {
         stage('Checkout') {
+            git branch: 'main', url: 'https://github.com/NAJIMx0/CentraleGuard.git'
+        }
+
+        stage('Test') {
             steps {
-                git branch: 'main', url: 'https://github.com/NAJIMx0/CentraleGuard.git'
+                dir('api-gateway') {
+                    sh 'mvn test'
+                }
+                dir('plc-command-service') {
+                    sh 'mvn test'
+                }
+                dir('telemetry-service') {
+                    sh 'mvn test'
+                }
             }
         }
 
         stage('Deploy with Docker Compose') {
             steps {
-                sh '''
-                    docker rm -f $(docker ps -aq) || true
-                    docker-compose up --build -d
-                '''
+                sh 'docker-compose up --build -d'
             }
         }
 
@@ -43,6 +49,5 @@ pipeline {
                 }
             }
         }
-
     }
 }

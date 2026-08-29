@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2d91d0a-094a-43de-8a0a-58954de180be" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/test/java/com/najim/apigateway/RateLimiterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plc-command-service/src/test/java/com/najim/plccommandservice/CommandServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetry-service/src/test/java/com/najim/telemetryservice/TelemetryServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,6 +229,8 @@
       <workItem from="1785175872715" duration="1339000" />
       <workItem from="1785243233607" duration="16759000" />
       <workItem from="1785327538564" duration="4810000" />
+      <workItem from="1787073936309" duration="335000" />
+      <workItem from="1787278224865" duration="16000" />
     </task>
     <servers />
   </component>
