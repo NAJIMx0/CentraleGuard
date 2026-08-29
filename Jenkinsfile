@@ -1,11 +1,18 @@
 pipeline {
     agent any
+
+    options {
+        disableConcurrentBuilds()
+    }
+
     tools {
         maven 'Maven3'
     }
+
     environment {
         SONAR_TOKEN = credentials('sonar-token')
     }
+
     stages {
         stage('Checkout') {
             steps {
@@ -29,7 +36,10 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
-                sh 'docker-compose up --build -d'
+                sh '''
+                    docker-compose down --remove-orphans -v || true
+                    docker-compose up --build -d
+                '''
             }
         }
 
@@ -50,6 +60,12 @@ pipeline {
                     sh 'mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=centraleguard-gateway -Dsonar.host.url=http://sonarqube:9000 -Dsonar.token=$SONAR_TOKEN'
                 }
             }
+        }
+    }
+
+    post {
+        failure {
+            sh 'docker-compose down --remove-orphans || true'
         }
     }
 }
