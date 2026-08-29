@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2d91d0a-094a-43de-8a0a-58954de180be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/test/java/com/najim/apigateway/RateLimiterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plc-command-service/src/test/java/com/najim/plccommandservice/CommandServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/telemetry-service/src/test/java/com/najim/telemetryservice/TelemetryServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-    </list>
+    <list default="true" id="a2d91d0a-094a-43de-8a0a-58954de180be" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,7 +225,7 @@
       <workItem from="1785327538564" duration="4810000" />
       <workItem from="1787073936309" duration="335000" />
       <workItem from="1787278224865" duration="16000" />
-      <workItem from="1788038036459" duration="306000" />
+      <workItem from="1788038036459" duration="839000" />
     </task>
     <servers />
   </component>
