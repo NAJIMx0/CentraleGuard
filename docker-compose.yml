@@ -226,6 +226,7 @@ services:
   kong-migrations:
     image: kong:3.6
     command: kong migrations bootstrap
+    user: "100:1000"
     depends_on:
       kong-database:
         condition: service_healthy
@@ -238,6 +239,7 @@ services:
 
   kong:
     image: kong:3.6
+    user: "100:1000"
     depends_on:
       kong-database:
         condition: service_healthy
