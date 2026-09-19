@@ -209,6 +209,52 @@ services:
       - sonarqube-logs:/opt/sonarqube/logs
     restart: unless-stopped
 
+  kong-database:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: kong
+      POSTGRES_DB: kong
+      POSTGRES_PASSWORD: kongpass
+    networks:
+      - centraleguard-net
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U kong" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  kong-migrations:
+    image: kong:3.6
+    command: kong migrations bootstrap
+    depends_on:
+      kong-database:
+        condition: service_healthy
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_PASSWORD: kongpass
+    networks:
+      - centraleguard-net
+
+  kong:
+    image: kong:3.6
+    depends_on:
+      kong-database:
+        condition: service_healthy
+      kong-migrations:
+        condition: service_completed_successfully
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_PASSWORD: kongpass
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    networks:
+      - centraleguard-net
+
 
 networks:
   centraleguard-net:
