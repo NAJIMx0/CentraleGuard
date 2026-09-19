@@ -11,6 +11,7 @@ pipeline {
 
     environment {
         SONAR_TOKEN = credentials('sonar-token')
+        COMPOSE_PROJECT_NAME = 'centraleguard-pipeline'
     }
 
     stages {
