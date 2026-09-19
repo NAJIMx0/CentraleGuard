@@ -52,10 +52,10 @@
                   │   TimescaleDB    │  readings + anomaly flags
                   └─────────────────┘
 
-┌──────────────────────────────────────────────────────────┐
-│  CI/CD:  GitHub → Jenkins → SonarQube → Docker → Deploy   │
-│  Observability:  Prometheus → Grafana                      │
-└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│  CI/CD:  GitHub → Jenkins → test → SonarQube → Docker → Deploy   │
+│  Observability:  Prometheus → Grafana                            │
+└──────────────────────────────────────────────────────────────────┘
 ```
 
 Supporting infrastructure: **Eureka** (service discovery) and **Spring Cloud Config Server** (centralized configuration) tie all services together. Every service is containerized and orchestrated via **Docker Compose**.
