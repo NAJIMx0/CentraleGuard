@@ -31,13 +31,13 @@ pipeline {
         stage('Deploy with Docker Compose') {
             steps {
                 sh '''
-                    docker compose -p centraleguard-pipeline down --remove-orphans || true
-                    docker compose -p centraleguard-pipeline up --build -d
+                    docker compose --project-name centraleguard-pipeline down --remove-orphans || true
+                    docker compose --project-name centraleguard-pipeline up --build -d
                 '''
             }
             post {
                 failure {
-                    sh 'docker compose -p centraleguard-pipeline logs kong-database || true'
+                    sh 'docker compose --project-name centraleguard-pipeline logs kong-database || true'
                 }
             }
         }
