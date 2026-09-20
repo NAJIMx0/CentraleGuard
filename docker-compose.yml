@@ -210,59 +210,34 @@ services:
       - sonarqube-logs:/opt/sonarqube/logs
     restart: unless-stopped
 
-  kong-database:
-    image: postgres:15-alpine
-    container_name: kong-database
-    environment:
-      POSTGRES_USER: kong
-      POSTGRES_DB: kong
-      POSTGRES_PASSWORD: kongpass
-    networks:
-      - centraleguard-net
-    volumes:
-      - kong-db-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "kong", "-d", "kong"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  kong-migrations:
-    image: kong:3.4
-    container_name: kong-migrations
-    command: kong migrations bootstrap
-    environment:
-      KONG_DATABASE: postgres
-      KONG_PG_HOST: kong-database
-      KONG_PG_USER: kong
-      KONG_PG_PASSWORD: kongpass
-      KONG_PG_DATABASE: kong
-    networks:
-      - centraleguard-net
-    depends_on:
-      kong-database:
-        condition: service_healthy
-
   kong:
     image: kong:3.4
     container_name: kong
     environment:
-      KONG_DATABASE: postgres
-      KONG_PG_HOST: kong-database
-      KONG_PG_USER: kong
-      KONG_PG_PASSWORD: kongpass
-      KONG_PG_DATABASE: kong
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /kong/kong.yml
       KONG_PROXY_LISTEN: 0.0.0.0:8000
       KONG_ADMIN_LISTEN: 0.0.0.0:8001
-    networks:
-      - centraleguard-net
+    volumes:
+      - ./kong.yml:/kong/kong.yml
     ports:
       - "8000:8000"
       - "8001:8001"
-    restart: unless-stopped
+    networks:
+      - centraleguard-net
+
+        
+  konga:
+    image: pantsel/konga:latest
+    container_name: konga
+    environment:
+      NODE_ENV: production
+    ports:
+      - "1337:1337"
+    networks:
+      - centraleguard-net
     depends_on:
-      kong-migrations:
-        condition: service_completed_successfully
+      - kong
 
 networks:
   centraleguard-net:

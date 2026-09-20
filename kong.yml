@@ -1,0 +1,9 @@
+_format_version: "3.0"
+services:
+  - name: telemetry-service
+    url: http://telemetry-service:8999
+    routes:
+      - name: telemetry-route
+        paths:
+          - /api/sensors/telemetry
+        strip_path: false
