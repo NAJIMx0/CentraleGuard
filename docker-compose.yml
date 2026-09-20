@@ -228,6 +228,7 @@ services:
 
   kong-migrations:
     image: kong:3.6
+    platform: linux/amd64
     command: kong migrations bootstrap
     user: "100:1000"
     depends_on:
@@ -242,6 +243,7 @@ services:
 
   kong:
     image: kong:3.6
+    platform: linux/amd64
     user: "100:1000"
     depends_on:
       kong-database:
