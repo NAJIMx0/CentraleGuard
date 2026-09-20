@@ -29,22 +29,15 @@ pipeline {
         }
 
         stage('Deploy with Docker Compose') {
-            environment {
-                DOCKER_DEFAULT_PLATFORM = 'linux/amd64'
-            }
             steps {
                 sh '''
-                    echo "Cleaning up old containers, volumes, and networks..."
-                    docker-compose down -v --remove-orphans || true
-                    docker network prune -f || true
-
-                    echo "Starting build and container spin-up..."
-                    docker-compose up --build -d
+                    docker compose -p centraleguard-pipeline down --remove-orphans || true
+                    docker compose -p centraleguard-pipeline up --build -d
                 '''
             }
             post {
                 failure {
-                    sh 'docker-compose logs kong-database || true'
+                    sh 'docker compose -p centraleguard-pipeline logs kong-database || true'
                 }
             }
         }
