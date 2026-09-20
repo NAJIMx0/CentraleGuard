@@ -12,7 +12,8 @@ services:
       test: ["CMD", "wget", "-qO-", "http://localhost:8888/actuator/health"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 40s
 
   discovery-service:
     container_name: discovery-service
