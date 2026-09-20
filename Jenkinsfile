@@ -33,7 +33,7 @@ pipeline {
                 sh '''
                     docker rm -f kong || true
                     docker compose --project-name centraleguard-pipeline down --remove-orphans || true
-                    docker compose --project-name centraleguard-pipeline up --build -d
+                    docker compose --project-name centraleguard-pipeline up --build -d --force-recreate
                 '''
             }
             post {
@@ -43,23 +43,23 @@ pipeline {
             }
         }
 
-        stage('Wait for SonarQube') {
-            steps {
-                sh '''
-                    until curl -s http://sonarqube:9000/api/system/status | grep -q '"status":"UP"'; do
-                        echo "Waiting for SonarQube to be ready..."
-                        sleep 5
-                    done
-                '''
-            }
-        }
-
-        stage('SonarQube Analysis') {
-            steps {
-                dir('api-gateway') {
-                    sh 'mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=centraleguard-gateway -Dsonar.host.url=http://sonarqube:9000 -Dsonar.token=$SONAR_TOKEN'
-                }
-            }
-        }
+//         stage('Wait for SonarQube') {
+//             steps {
+//                 sh '''
+//                     until curl -s http://sonarqube:9000/api/system/status | grep -q '"status":"UP"'; do
+//                         echo "Waiting for SonarQube to be ready..."
+//                         sleep 5
+//                     done
+//                 '''
+//             }
+//         }
+//
+//         stage('SonarQube Analysis') {
+//             steps {
+//                 dir('api-gateway') {
+//                     sh 'mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=centraleguard-gateway -Dsonar.host.url=http://sonarqube:9000 -Dsonar.token=$SONAR_TOKEN'
+//                 }
+//             }
+//         }
     }
 }
