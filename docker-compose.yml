@@ -211,6 +211,7 @@ services:
 
   kong-database:
     image: postgres:13
+    shm_size: '256mb'
     environment:
       POSTGRES_USER: kong
       POSTGRES_DB: kong
