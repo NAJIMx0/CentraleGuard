@@ -11,7 +11,6 @@ pipeline {
 
     environment {
         SONAR_TOKEN = credentials('sonar-token')
-        COMPOSE_PROJECT_NAME = 'centraleguard-pipeline'
     }
 
     stages {
@@ -35,11 +34,9 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo "Stopping only this project's containers safely..."
-                    docker-compose down || true
-
-                    echo "Removing only the old postgres:13 architecture cache..."
-                    docker rmi postgres:13 || true
+                    echo "Cleaning up old containers, volumes, and networks..."
+                    docker-compose down -v --remove-orphans || true
+                    docker network prune -f || true
 
                     echo "Starting build and container spin-up..."
                     docker-compose up --build -d
@@ -74,7 +71,7 @@ pipeline {
 
     post {
         failure {
-            sh 'docker-compose down --remove-orphans || true'
+            sh 'docker-compose down -v --remove-orphans || true'
         }
     }
 }
