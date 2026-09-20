@@ -265,7 +265,7 @@ services:
 
 networks:
   centraleguard-net:
-    driver: bridge
+    name: centraleguard_centraleguard-net
 
 volumes:
   timescaledb-data:
