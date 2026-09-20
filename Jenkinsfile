@@ -39,6 +39,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f $(docker ps -aq) || true
+                    docker rmi -f postgres:13 || true
                     docker-compose up --build -d
                 '''
             }
