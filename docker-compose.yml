@@ -226,7 +226,7 @@ services:
     networks:
       - centraleguard-net
 
-        
+
   konga:
     image: pantsel/konga:latest
     container_name: konga
