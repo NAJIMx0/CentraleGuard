@@ -61,10 +61,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        failure {
-            sh 'docker-compose down -v --remove-orphans || true'
-        }
-    }
 }
