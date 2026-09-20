@@ -36,10 +36,21 @@ pipeline {
         }
 
         stage('Deploy with Docker Compose') {
+            environment {
+                // If your Jenkins agent is an Intel/AMD machine, use linux/amd64
+                // If it is an ARM64 machine, change this to linux/arm64
+                DOCKER_DEFAULT_PLATFORM = 'linux/amd64'
+            }
             steps {
                 sh '''
+                    echo "Stopping and cleaning up previous containers..."
                     docker rm -f $(docker ps -aq) || true
                     docker rmi -f postgres:13 || true
+
+                    echo "Pulling explicit image platforms..."
+                    docker-compose pull kong-database || true
+
+                    echo "Starting build and container spin-up..."
                     docker-compose up --build -d
                 '''
             }
@@ -49,6 +60,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Wait for SonarQube') {
             steps {
