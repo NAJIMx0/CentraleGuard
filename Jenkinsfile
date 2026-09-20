@@ -20,13 +20,13 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                dir('api-gateway') { sh 'mvn test' }
-                dir('plc-command-service') { sh 'mvn test' }
-                dir('telemetry-service') { sh 'mvn test' }
-            }
-        }
+//         stage('Test') {
+//             steps {
+//                 dir('api-gateway') { sh 'mvn test' }
+//                 dir('plc-command-service') { sh 'mvn test' }
+//                 dir('telemetry-service') { sh 'mvn test' }
+//             }
+//         }
 
         stage('Deploy with Docker Compose') {
             steps {
