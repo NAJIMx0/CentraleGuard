@@ -31,9 +31,9 @@ pipeline {
         stage('Deploy with Docker Compose') {
             steps {
                 sh '''
-                    docker rm -f kong || true
+
                     docker compose --project-name centraleguard-pipeline down --remove-orphans || true
-                    docker compose --project-name centraleguard-pipeline up --build -d --force-recreate
+                    docker compose --project-name centraleguard-pipeline up --build -d
                 '''
             }
             post {
