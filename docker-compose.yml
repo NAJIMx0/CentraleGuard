@@ -225,18 +225,33 @@ services:
     networks:
       - centraleguard-net
 
+  konga-db:
+    image: postgres:13
+    container_name: konga-db
+    environment:
+      POSTGRES_USER: konga
+      POSTGRES_PASSWORD: kongapass
+      POSTGRES_DB: konga
+    networks:
+      - centraleguard-net
 
   konga:
     image: pantsel/konga:latest
     container_name: konga
     environment:
+      DB_ADAPTER: postgres
+      DB_HOST: konga-db
+      DB_USER: konga
+      DB_PASSWORD: kongapass
+      DB_DATABASE: konga
       NODE_ENV: production
     ports:
       - "1337:1337"
     networks:
       - centraleguard-net
     depends_on:
-      - kong
+      - konga-db
+
 
 networks:
   centraleguard-net:

@@ -4,6 +4,12 @@ services:
     url: http://telemetry-service:8999
     routes:
       - name: telemetry-route
-        paths:
-          - /api/sensors/telemetry
+        paths: ["/api/sensors/telemetry"]
         strip_path: false
+  - name: plc-command-service
+    url: http://plc-command-service:8998
+    routes:
+      - name: plc-route
+        paths: ["/api/plc/command"]
+        strip_path: false
+        methods: ["POST"]
