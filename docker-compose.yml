@@ -258,7 +258,18 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    networks:
+      - centraleguard-net
+    depends_on:
+      - redis
+    restart: unless-stopped
 networks:
   centraleguard-net:
     name: centraleguard-net
