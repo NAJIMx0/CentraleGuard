@@ -6,6 +6,11 @@ services:
       - name: telemetry-route
         paths: ["/api/sensors/telemetry"]
         strip_path: false
+    plugins:
+      - name: file-log
+        config:
+          path: /tmp/kong-telemetry.log
+
   - name: plc-command-service
     url: http://plc-command-service:8998
     routes:
@@ -13,3 +18,7 @@ services:
         paths: ["/api/plc/command"]
         strip_path: false
         methods: ["POST"]
+    plugins:
+      - name: file-log
+        config:
+          path: /tmp/kong-plc.log

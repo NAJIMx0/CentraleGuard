@@ -36,11 +36,11 @@ pipeline {
                     docker compose --project-name centraleguard-pipeline up --build -d
                 '''
             }
-            post {
-                failure {
-                      sh 'docker compose --project-name centraleguard-pipeline logs kafka'
-                }
-            }
+//             post {
+//                 failure {
+//                       sh 'docker compose --project-name centraleguard-pipeline logs kafka'
+//                 }
+//             }
         }
 
 //         stage('Wait for SonarQube') {
