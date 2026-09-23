@@ -38,7 +38,8 @@ pipeline {
             }
             post {
                 failure {
-                    sh 'docker compose --project-name centraleguard-pipeline logs kong-database || true'
+                    sh 'docker compose --project-name centraleguard-pipeline logs kong-database || true
+                        docker compose --project-name centraleguard-pipeline logs kafka'
                 }
             }
         }
