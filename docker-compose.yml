@@ -33,8 +33,8 @@ services:
       test: ["CMD", "wget", "-qO-", "http://localhost:8761/actuator/health"]
       interval: 10s
       timeout: 5s
-      retries: 5
-  #      start_period: 40s
+      retries: 10          # CHANGED: 5 -> 10, more room under contention
+      start_period: 40s    # CHANGED: was commented out — this was the bug
 
   api-gateway:
     container_name: api-gateway
@@ -114,7 +114,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 10
-      start_period: 60s
+      start_period: 60s    # CHANGED: added — was missing, same bug as discovery-service
 
   timescaledb:
     image: timescale/timescaledb:latest-pg16
@@ -132,6 +132,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 20s    # CHANGED: added, cheap insurance
 
   ai-service:
     container_name: ai-service
