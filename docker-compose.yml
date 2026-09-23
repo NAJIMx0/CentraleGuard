@@ -113,8 +113,8 @@ services:
       test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
       interval: 10s
       timeout: 10s
-      retries: 10
-      start_period: 60s    # CHANGED: added — was missing, same bug as discovery-service
+      retries: 20
+      start_period: 90s    # CHANGED: added — was missing, same bug as discovery-service
 
   timescaledb:
     image: timescale/timescaledb:latest-pg16
