@@ -34,7 +34,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-#      start_period: 40s
+  #      start_period: 40s
 
   api-gateway:
     container_name: api-gateway
@@ -224,34 +224,21 @@ services:
       - "8001:8001"
     networks:
       - centraleguard-net
-
-  konga-db:
-    image: postgres:13
-    container_name: konga-db
-    environment:
-      POSTGRES_USER: konga
-      POSTGRES_PASSWORD: kongapass
-      POSTGRES_DB: konga
-    networks:
-      - centraleguard-net
+    depends_on:
+      - telemetry-service
+      - plc-command-service
 
   konga:
     image: pantsel/konga:latest
     container_name: konga
     environment:
-      DB_ADAPTER: postgres
-      DB_HOST: konga-db
-      DB_USER: konga
-      DB_PASSWORD: kongapass
-      DB_DATABASE: konga
       NODE_ENV: production
     ports:
       - "1337:1337"
     networks:
       - centraleguard-net
     depends_on:
-      - konga-db
-
+      - kong
 
 networks:
   centraleguard-net:
